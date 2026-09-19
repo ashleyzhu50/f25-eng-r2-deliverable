@@ -14,6 +14,7 @@ import {
   Loader2,
   Moon,
   MoreVertical,
+  Pencil,
   Pizza,
   Plus,
   Settings,
@@ -28,6 +29,7 @@ import {
 export const Icons = {
   logo: Command,
   close: X,
+  edit: Pencil,
   spinner: Loader2,
   chevronLeft: ChevronLeft,
   chevronRight: ChevronRight,

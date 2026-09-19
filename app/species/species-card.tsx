@@ -16,9 +16,10 @@ import type { Database } from "@/lib/schema";
 import { DialogDescription } from "@radix-ui/react-dialog";
 import Image from "next/image";
 import { useState } from "react";
+import EditSpeciesDialog from "./edit-species-dialog";
 type Species = Database["public"]["Tables"]["species"]["Row"];
 
-export default function SpeciesCard({ species }: { species: Species }) {
+export default function SpeciesCard({ species, sessionId }: { species: Species; sessionId: string }) {
   const [open, setOpen] = useState<boolean>(false);
   return (
     <div className="m-4 w-72 min-w-72 flex-none rounded border-2 p-3 shadow">
@@ -31,21 +32,24 @@ export default function SpeciesCard({ species }: { species: Species }) {
       <h4 className="text-lg font-light italic">{species.common_name}</h4>
       <p>{species.description ? species.description.slice(0, 150).trim() + "..." : ""}</p>
       {/* Replace the button with the detailed view dialog. */}
-      <Dialog open={open} onOpenChange={setOpen}>
-        <DialogTrigger asChild>
-          <Button className="mt-3 w-full">Learn More</Button>
-        </DialogTrigger>
-        <DialogContent className="max-h-[80vh] overflow-y-auto">
-          <DialogHeader>
-            <DialogTitle>{species.common_name}</DialogTitle>
-            <DialogDescription>Kingdom: {species.kingdom}</DialogDescription>
-            <DialogDescription>Scientific Name: {species.scientific_name}</DialogDescription>
-            <DialogDescription>Total Population: {species.total_population}</DialogDescription>
-          </DialogHeader>
+      <div className="flex justify-center gap-3">
+        <Dialog open={open} onOpenChange={setOpen}>
+          <DialogTrigger asChild>
+            <Button className="mt-3 w-full">Learn More</Button>
+          </DialogTrigger>
+          <DialogContent className="max-h-[80vh] overflow-y-auto">
+            <DialogHeader>
+              <DialogTitle>{species.common_name}</DialogTitle>
+              <DialogDescription>Kingdom: {species.kingdom}</DialogDescription>
+              <DialogDescription>Scientific Name: {species.scientific_name}</DialogDescription>
+              <DialogDescription>Total Population: {species.total_population}</DialogDescription>
+            </DialogHeader>
 
-          <p>{species.description}</p>
-        </DialogContent>
-      </Dialog>
+            <p>{species.description}</p>
+          </DialogContent>
+        </Dialog>
+        {species.author == sessionId && <EditSpeciesDialog userId={sessionId} species={species} />}
+      </div>
     </div>
   );
 }
