@@ -216,10 +216,10 @@ export default function DeleteSpeciesDialog({
                       <FormControl>
                         {/* Using shadcn/ui form with number: https://github.com/shadcn-ui/ui/issues/421 */}
                         <Input
-                          disabled
                           type="number"
                           value={value ?? ""}
                           {...rest}
+                          disabled
                           onChange={(event) => field.onChange(+event.target.value)}
                         />
                       </FormControl>
@@ -255,7 +255,7 @@ export default function DeleteSpeciesDialog({
                     <FormItem>
                       <FormLabel>Description</FormLabel>
                       <FormControl>
-                        <Textarea disabled value={value ?? ""} {...rest} />
+                        <Textarea value={value ?? ""} {...rest} disabled />
                       </FormControl>
                       <FormMessage />
                     </FormItem>
