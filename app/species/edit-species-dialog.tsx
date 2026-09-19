@@ -143,11 +143,13 @@ export default function EditSpeciesDialog({
 
   return (
     <Dialog open={open} onOpenChange={setOpen}>
-      <DialogTrigger asChild>
-        <Button variant="secondary" className="mt-3 w-full">
-          <Icons.edit className="mr-3 h-5 w-5" />
-        </Button>
-      </DialogTrigger>
+      {userId === species.author && (
+        <DialogTrigger asChild>
+          <Button variant="secondary" className="mt-3 w-full">
+            <Icons.edit className="h-5 w-5" />
+          </Button>
+        </DialogTrigger>
+      )}
       <DialogContent className="max-h-screen overflow-y-auto sm:max-w-[600px]">
         <DialogHeader>
           <DialogTitle>Edit Species</DialogTitle>
