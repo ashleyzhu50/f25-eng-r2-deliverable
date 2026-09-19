@@ -144,9 +144,8 @@ export default function EditSpeciesDialog({
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
-        <Button className="mt-3 w-full">
+        <Button variant="secondary" className="mt-3 w-full">
           <Icons.edit className="mr-3 h-5 w-5" />
-          Edit
         </Button>
       </DialogTrigger>
       <DialogContent className="max-h-screen overflow-y-auto sm:max-w-[600px]">
@@ -166,7 +165,7 @@ export default function EditSpeciesDialog({
                   <FormItem>
                     <FormLabel>Scientific Name</FormLabel>
                     <FormControl>
-                      <Input placeholder="Cavia porcellus" {...field} />
+                      <Input {...field} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -182,7 +181,7 @@ export default function EditSpeciesDialog({
                     <FormItem>
                       <FormLabel>Common Name</FormLabel>
                       <FormControl>
-                        <Input value={value ?? ""} placeholder="Guinea pig" {...rest} />
+                        <Input value={value ?? ""} {...rest} />
                       </FormControl>
                       <FormMessage />
                     </FormItem>
@@ -198,7 +197,7 @@ export default function EditSpeciesDialog({
                     <Select onValueChange={(value) => field.onChange(kingdoms.parse(value))} value={field.value}>
                       <FormControl>
                         <SelectTrigger>
-                          <SelectValue placeholder="Select a kingdom" />
+                          <SelectValue />
                         </SelectTrigger>
                       </FormControl>
                       <SelectContent>
@@ -228,7 +227,6 @@ export default function EditSpeciesDialog({
                         <Input
                           type="number"
                           value={value ?? ""}
-                          placeholder="300000"
                           {...rest}
                           onChange={(event) => field.onChange(+event.target.value)}
                         />
@@ -248,11 +246,7 @@ export default function EditSpeciesDialog({
                     <FormItem>
                       <FormLabel>Image URL</FormLabel>
                       <FormControl>
-                        <Input
-                          value={value ?? ""}
-                          placeholder="https://upload.wikimedia.org/wikipedia/commons/thumb/3/30/George_the_amazing_guinea_pig.jpg/440px-George_the_amazing_guinea_pig.jpg"
-                          {...rest}
-                        />
+                        <Input value={value ?? ""} {...rest} />
                       </FormControl>
                       <FormMessage />
                     </FormItem>
@@ -269,11 +263,7 @@ export default function EditSpeciesDialog({
                     <FormItem>
                       <FormLabel>Description</FormLabel>
                       <FormControl>
-                        <Textarea
-                          value={value ?? ""}
-                          placeholder="The guinea pig or domestic guinea pig, also known as the cavy or domestic cavy, is a species of rodent belonging to the genus Cavia in the family Caviidae."
-                          {...rest}
-                        />
+                        <Textarea value={value ?? ""} {...rest} />
                       </FormControl>
                       <FormMessage />
                     </FormItem>

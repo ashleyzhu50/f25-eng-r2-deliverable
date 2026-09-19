@@ -16,6 +16,7 @@ import type { Database } from "@/lib/schema";
 import { DialogDescription } from "@radix-ui/react-dialog";
 import Image from "next/image";
 import { useState } from "react";
+import DeleteSpeciesDialog from "./delete-species-dialog";
 import EditSpeciesDialog from "./edit-species-dialog";
 type Species = Database["public"]["Tables"]["species"]["Row"];
 
@@ -32,7 +33,7 @@ export default function SpeciesCard({ species, sessionId }: { species: Species; 
       <h4 className="text-lg font-light italic">{species.common_name}</h4>
       <p>{species.description ? species.description.slice(0, 150).trim() + "..." : ""}</p>
       {/* Replace the button with the detailed view dialog. */}
-      <div className="flex justify-center gap-3">
+      <div className="grid grid-cols-[2fr_1fr_1fr] gap-3">
         <Dialog open={open} onOpenChange={setOpen}>
           <DialogTrigger asChild>
             <Button className="mt-3 w-full">Learn More</Button>
@@ -49,6 +50,7 @@ export default function SpeciesCard({ species, sessionId }: { species: Species; 
           </DialogContent>
         </Dialog>
         {species.author == sessionId && <EditSpeciesDialog userId={sessionId} species={species} />}
+        {species.author == sessionId && <DeleteSpeciesDialog userId={sessionId} species={species} />}
       </div>
     </div>
   );
