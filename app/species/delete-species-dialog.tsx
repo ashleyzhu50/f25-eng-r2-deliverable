@@ -114,7 +114,7 @@ export default function DeleteSpeciesDialog({
 
     // Reset form values to the default (empty) values.
     // Practically, this line can be removed because router.refresh() also resets the form. However, we left it as a reminder that you should generally consider form "cleanup" after an add/edit operation.
-    form.reset(defaultValues);
+    form.reset(input);
 
     setOpen(false);
 
